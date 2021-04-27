@@ -2,11 +2,15 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
+    getUserLocaition
 }
 
-var gMap;
-
-function addMarker(loc) {
+const KEY = 'locaition';
+var map;
+var userLoc;
+// loadFromStorage(KEY) ||
+// saveToStorage(key, val)
+function addMarker() {
     var marker = new google.maps.Marker({
         position: userLoc,
         map: map,
@@ -19,6 +23,29 @@ function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     map.panTo(laLatLng);
 }
+
+// const ipAPI = '//api.ipify.org?format=json'
+// const inputValue = fetch(ipAPI)
+//   .then(response => response.json())
+//   .then(data => data.ip)
+//     con
+// const { value: ipAddress } = await Swal.fire({
+//   title: 'Enter your IP address',
+//   input: 'text',
+//   inputLabel: 'Your IP address',
+//   inputValue: inputValue,
+//   showCancelButton: true,
+//   inputValidator: (value) => {
+//     if (!value) {
+//       return 'You need to write something!'
+//     }
+//   }
+// })
+
+// if (ipAddress) {
+//   Swal.fire(`Your IP address is ${ipAddress}`)
+// }
+
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()

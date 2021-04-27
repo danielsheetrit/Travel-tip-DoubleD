@@ -1,9 +1,5 @@
-import {
-    locService
-} from './services/loc.service.js'
-import {
-    mapService
-} from './services/map.service.js'
+import {locService} from './services/loc.service.js'
+import {mapService} from './services/map.service.js'
 
 window.onload = onInit;
 
@@ -49,7 +45,7 @@ function addEventListenrs() {
             .catch(err => {
                 console.log('err!!!', err);
             })
-    })
+    })    
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -58,4 +54,22 @@ function getPosition() {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
+}
+
+function onOpenModal(){
+    let prm = new Promise((resolve, reject) => {
+
+        const { value: text } = Swal.fire({
+            input: 'textarea',
+            inputLabel: 'Message',
+            inputPlaceholder: '...',
+        inputAttributes: {
+            'aria-label': 'Type your message here'
+        },
+        showCancelButton: true
+    })
+    if (text) {
+        Swal.fire('your massege is recived');
+    }
+})
 }
