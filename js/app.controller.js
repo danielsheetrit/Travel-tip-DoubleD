@@ -58,28 +58,4 @@ function getPosition() {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
-<<<<<<< HEAD
-=======
-}
-
-function onOpenModal() {
-    let prm = new Promise((resolve, reject) => {
-
-
-        const {
-            value: text
-        } = await Swal.fire({
-            input: 'textarea',
-            inputLabel: 'Message',
-            inputPlaceholder: '...',
-            inputAttributes: {
-                'aria-label': 'Type your message here'
-            },
-            showCancelButton: true
-        })
-        if (text) {
-            Swal.fire('your massege is recived');
-        }
-    })
->>>>>>> a5cc16c50cfc748e629efda720e43940ddf2bf7c
 }
