@@ -70,15 +70,22 @@ header h1 {
 
 /* user location */
 .user-loc {
+    display: flex;
     margin-bottom: 10px;
-    border: 1px solid rgb(172, 172, 172);
+    outline:1px solid rgb(172, 172, 172);
+    justify-content: s;
 }
 
 .user-loc p {
+    display: inline;
     width: 6rem;
     background-color: #112d4e;
     color: #f9f7f7;
     text-align: center;
+    padding: 5px;
+}
+
+.user-loc span {
     padding: 5px;
 }
 
@@ -91,7 +98,7 @@ main {
     gap: 8px;
 }
 
-#map {
+.map {
     width: 31.25rem;
     height: 25rem;
 }
@@ -100,7 +107,7 @@ main {
     width: 20rem;
     height: 12.5rem;
     grid-area: 1 / 1 / 2 / 2;
-    border: 1px solid rgb(172, 172, 172);
+    outline:1px solid rgb(172, 172, 172);
 }
 
 .actions-container {
@@ -128,11 +135,20 @@ main {
     color: #f9f7f7;
 }
 
+.locs-container p {
+    width: 100%;
+    padding: .5rem;
+    background-color: #112d4e;
+    color: #f9f7f7;   
+}
+
+.locs-container span {
+    color: rgba(41, 41, 41, 0.932)
+}
 /* footer */
 
 footer {
     height: 6.25rem;
-    font-family: inter-med;
     justify-content: center;
     align-items: center;
     background-color: #112d4e;
