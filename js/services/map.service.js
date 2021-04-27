@@ -1,26 +1,14 @@
-
-
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    // onGetLocationOnMap,
+    getMap
 }
 
 var gMap;
+var gInfoWindow;
 
-function initMap(lat = 32.0749831, lng = 34.9120554) {
-    console.log('InitMap');
-    return _connectGoogleApi()
-        .then(() => {
-            console.log('google available');
-            gMap = new google.maps.Map(
-                document.querySelector('#map'), {
-                center: { lat, lng },
-                zoom: 15
-            })
-            console.log('Map!', gMap);
-        })
-}
 
 function addMarker(loc) {
     var marker = new google.maps.Marker({
@@ -36,11 +24,13 @@ function panTo(lat, lng) {
     gMap.panTo(laLatLng);
 }
 
-
+function getMap() {
+    return gMap;
+}
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = ''; //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyCjIexPtvV4Y3_C8J8NR1yfnrQr5s1LibY';
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
@@ -50,4 +40,39 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function initMap(lat = 32.0749831, lng = 34.9120554) {
+    console.log('InitMap');
+    return _connectGoogleApi()
+        .then(() => {
+            console.log('google available');
+            gMap = new google.maps.Map(
+                document.querySelector('.map'), {
+                    center: {
+                        lat,
+                        lng
+                    },
+                    zoom: 15
+                })
+            const myLatlng = {
+                lat: -25.363,
+                lng: 131.044
+            };
+            let infoWindow = new google.maps.InfoWindow({
+                content: "Click the map to get Lat/Lng!",
+                position: myLatlng,
+            });
+            infoWindow.open(gMap)
+            gMap.addListener('click', (mapsMouseEvent) =>{
+                console.log(mapsMouseEvent);
+                infoWindow.close();
+                infoWindow = new google.maps.InfoWindow({
+                    position: mapsMouseEvent.latLng,
+                  });
+                  infoWindow.setContent(JSON.stringify
+                    (mapsMouseEvent.latLng.toJSON(), null, 2));
+                    infoWindow.open(gMap);
+            })
+        })
 }
