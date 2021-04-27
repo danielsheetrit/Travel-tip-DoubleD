@@ -2,18 +2,18 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    // onGetLocationOnMap,
-    getMap
+    getUserLocaition
 }
 
-var gMap;
-var gInfoWindow;
-
-
-function addMarker(loc) {
+const KEY = 'locaition';
+var map;
+var userLoc;
+// loadFromStorage(KEY) ||
+// saveToStorage(key, val)
+function addMarker() {
     var marker = new google.maps.Marker({
-        position: loc,
-        map: gMap,
+        position: userLoc,
+        map: map,
         title: 'Hello World!'
     });
     return marker;
@@ -21,12 +21,31 @@ function addMarker(loc) {
 
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
-    gMap.panTo(laLatLng);
+    map.panTo(laLatLng);
 }
 
-function getMap() {
-    return gMap;
-}
+// const ipAPI = '//api.ipify.org?format=json'
+// const inputValue = fetch(ipAPI)
+//   .then(response => response.json())
+//   .then(data => data.ip)
+//     con
+// const { value: ipAddress } = await Swal.fire({
+//   title: 'Enter your IP address',
+//   input: 'text',
+//   inputLabel: 'Your IP address',
+//   inputValue: inputValue,
+//   showCancelButton: true,
+//   inputValidator: (value) => {
+//     if (!value) {
+//       return 'You need to write something!'
+//     }
+//   }
+// })
+
+// if (ipAddress) {
+//   Swal.fire(`Your IP address is ${ipAddress}`)
+// }
+
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
@@ -47,7 +66,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
-            gMap = new google.maps.Map(
+            map = new google.maps.Map(
                 document.querySelector('.map'), {
                     center: {
                         lat,
@@ -59,20 +78,29 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 lat: -25.363,
                 lng: 131.044
             };
+
             let infoWindow = new google.maps.InfoWindow({
                 content: "Click the map to get Lat/Lng!",
-                position: myLatlng,
+                position: myLatlng
             });
-            infoWindow.open(gMap)
-            gMap.addListener('click', (mapsMouseEvent) =>{
-                console.log(mapsMouseEvent);
+
+            map.addListener('click', (mapsMouseEvent) => {
                 infoWindow.close();
                 infoWindow = new google.maps.InfoWindow({
-                    position: mapsMouseEvent.latLng,
-                  });
-                  infoWindow.setContent(JSON.stringify
-                    (mapsMouseEvent.latLng.toJSON(), null, 2));
-                    infoWindow.open(gMap);
+                    position: mapsMouseEvent.latLng
+                });
+                userLoc = mapsMouseEvent.latLng.toJSON();
+
+                infoWindow.setContent(JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2));
+                infoWindow.open(map);
+                setTimeout(() => infoWindow.close(map), 1000);
             })
         })
+}
+
+function getUserLocaition() {
+    return new Promise((resolve, reject) => {
+        if (!userLoc) return reject('no location available');
+        return resolve(userLoc);
+    })
 }

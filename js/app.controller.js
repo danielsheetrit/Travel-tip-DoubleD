@@ -7,6 +7,8 @@ import {
 
 window.onload = onInit;
 
+mapService.getUserLocaition();
+
 function onInit() {
     addEventListenrs();
     mapService.initMap()
@@ -25,10 +27,7 @@ function addEventListenrs() {
     // ADD LISINER FOR THE MARKER BUTTON
     document.querySelector('.btn-add-marker').addEventListener('click', (ev) => {
         console.log('Adding a marker');
-        mapService.addMarker({
-            lat: 32.0749831,
-            lng: 34.9120554
-        });
+        mapService.addMarker();
     })
     //ADD LISINER FOR GET LOCATION BUTTON
     document.querySelector('.btn-get-locs').addEventListener('click', (ev) => {
@@ -50,7 +49,7 @@ function addEventListenrs() {
             .catch(err => {
                 console.log('err!!!', err);
             })
-    })    
+    })
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -61,3 +60,23 @@ function getPosition() {
     })
 }
 
+function onOpenModal() {
+    let prm = new Promise((resolve, reject) => {
+
+
+        const {
+            value: text
+        } = await Swal.fire({
+            input: 'textarea',
+            inputLabel: 'Message',
+            inputPlaceholder: '...',
+            inputAttributes: {
+                'aria-label': 'Type your message here'
+            },
+            showCancelButton: true
+        })
+        if (text) {
+            Swal.fire('your massege is recived');
+        }
+    })
+}
