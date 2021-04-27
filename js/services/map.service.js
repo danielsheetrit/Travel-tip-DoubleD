@@ -2,13 +2,9 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    // onGetLocationOnMap,
-    getMap
 }
 
 var gMap;
-var gInfoWindow;
-
 
 function addMarker(loc) {
     var marker = new google.maps.Marker({
@@ -22,10 +18,6 @@ function addMarker(loc) {
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
-}
-
-function getMap() {
-    return gMap;
 }
 
 function _connectGoogleApi() {
