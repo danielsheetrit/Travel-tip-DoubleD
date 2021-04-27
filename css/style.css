@@ -1,11 +1,141 @@
+/* implement foonts */
+@import url(./fonts.css); 
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+html {
+    font-family: inter-light, Arial, Helvetica, sans-serif;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f7f7;
     height: 100vh;
 }
 
+input {
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+/* HELPERS */
+
+.grid {
+    display: grid;
+}
+
+.flex {
+    display: flex;
+}
+
+.container {
+    max-width: 830px;
+    margin: 0 auto;
+}
+
+/* COMPONENTS */
+
+/* header */
+
+header {
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+}
+
+header h1 {
+    font-family: inter-semibold;
+    color: #3f72af;
+}
+
+.header-actions > * {
+    padding: .5rem;
+    margin-right: 0.5rem;
+}
+
+.header-actions button {
+    border-radius: 5px;
+    background-color: #3f72af;
+    color: #f9f7f7;
+}
+
+/* user location */
+.user-loc {
+    margin-bottom: 10px;
+    border: 1px solid rgb(172, 172, 172);
+}
+
+.user-loc p {
+    width: 6rem;
+    background-color: #112d4e;
+    color: #f9f7f7;
+    text-align: center;
+    padding: 5px;
+}
+
+/* main */
+
+main {
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, 200px);
+    justify-content: center;
+    gap: 8px;
+}
+
+#map {
+    width: 31.25rem;
+    height: 25rem;
+}
+
+.locs-container {
+    width: 20rem;
+    height: 12.5rem;
+    grid-area: 1 / 1 / 2 / 2;
+    border: 1px solid rgb(172, 172, 172);
+}
+
+.actions-container {
+    width: 20rem;
+    height: 12rem;
+    grid-area: 2 / 1 / 3 / 2;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1px;
+}
+
+.actions-container button {
+    background-color: #112d4e;
+    color: #f9f7f7;
+}
+
+.actions-container button:hover {
+    background-color: #3f72af;
+}
+
+.locs-container p {
+    width: 100%;
+    padding: .5rem;
+    background-color: #112d4e;
+    color: #f9f7f7;
+}
+
+/* footer */
+
+footer {
+    height: 6.25rem;
+    font-family: inter-med;
+    justify-content: center;
+    align-items: center;
+    background-color: #112d4e;
+    color: #e2e2e2;
+    margin-top: 1.5rem;
+}

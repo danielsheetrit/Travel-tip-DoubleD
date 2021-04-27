@@ -1,23 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <title>DoubleD!</title>
 </head>
-<body>
-    <h1>TravelTip Starter</h1>
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <button class="btn-add-marker">Add Marker Speific Location</button>
-    <button class="btn-user-pos">Get User Position</button>
-    <button class="btn-get-locs">Get Locations</button>
-    <button class="btn-pan">Pan Map to Tokyo</button>
 
-    <p>You are at: <span class="user-pos"></span></p>
-    <p>Locations: <span class="locs"></span></p>
+<body>
+
+    <header class="container flex">
+        <h1>Travel Tip.</h1>
+        <div class="header-actions">
+            <input type="search" placeholder="where you want to go?">
+            <button>my location</button>
+        </div>
+    </header>
     
+    <div class="user-loc container">
+        <p>You are at: <span class="user-pos"></span></p>
+    </div>
+
+    <main class="container grid">
+        <div class="locs-container">
+            <p>Locations: 
+                <span class="locs"></span>
+            </p>
+        </div>
+        <div class="actions-container grid">
+            <button class="btn-add-marker">Add marker speific location</button>
+            <button class="btn-user-pos">Get user position</button>
+            <button class="btn-get-locs">Get locations</button>
+            <button class="btn-pan">Pan map to Tokyo</button>
+        </div>
+        <div id="map"></div>
+    </main>
+
+    <footer class="flex">
+        <h3>All Rights Reserved as HELL. DoubleD.</h3>
+    </footer>
 
     <script type="module" src="./js/app.controller.js"></script>
 </body>
+
 </html>

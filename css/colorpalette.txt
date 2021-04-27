@@ -1,0 +1,5 @@
+backgroud color: #f9f7f7,
+container backgroud color: #dbe2ef,
+buttons color: #3f72af, #112d4e. 
+
+https://colorhunt.co/palette/22272

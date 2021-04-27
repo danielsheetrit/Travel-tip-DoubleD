@@ -1,0 +1,16 @@
+@font-face {
+    font-family: inter-thin;
+    src: url(./fonts/Inter-Thin.ttf)
+}
+@font-face {
+    font-family: inter-light;
+    src: url(./fonts/Inter-Light.ttf)
+}
+@font-face {
+    font-family: inter-med;
+    src: url(./fonts/Inter-Medium.ttf)
+}
+@font-face {
+    font-family: inter-semibold;
+    src: url(./fonts/Inter-SemiBold.ttf)
+}
